@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('phone');
             $table->unsignedBigInteger('ward_id');
             // [1 => male, 2 => female]
-            $table->enum('gender', ['1', '2']);
+            $table->string('gender');
             $table->timestamps();
         });
     }

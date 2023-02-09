@@ -17,9 +17,10 @@ class CitizenFactory extends Factory
      */
     public function definition()
     {
+        $gender = rand(1, 2);
         return [
             'full_name' => fake()->firstName() . ' ' . fake()->lastName(),
-            'gender'    => rand(1, 2),
+            'gender'    => $gender == 1 ? 'male' : 'female',
             'address'   => fake()->address(),
             'phone'     => fake()->phoneNumber(),
             'ward_id'   => \App\Models\Ward::all()->random()->id,

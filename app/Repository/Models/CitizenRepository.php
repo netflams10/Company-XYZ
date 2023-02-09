@@ -11,7 +11,7 @@ class CitizenRepository
 
     public function show ($id)
     {
-        return $this->model->find($id);
+        return $this->model->where('id', $id)->with('ward')->first();
     }
 
     public function store ($request)
