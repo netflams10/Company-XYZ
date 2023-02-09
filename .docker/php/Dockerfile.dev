@@ -1,25 +1,27 @@
-FROM php:7.4-fpm
+FROM php:8.1-fpm
 
 WORKDIR /var/www/html
 
 RUN apt-get update \
-  &&  apt-get install --quiet --yes --no-install-recommends \
+    &&  apt-get install --quiet --yes --no-install-recommends \
     libzip-dev \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libpng-dev \
     unzip \
-  && docker-php-ext-install zip pdo pdo_mysql \
-  && pecl install -o -f redis-5.1.1 \
-  && docker-php-ext-enable redis \
-  && docker-php-ext-configure gd --with-freetype --with-jpeg \
-  && docker-php-ext-install -j$(nproc) gd
+    && docker-php-ext-install zip pdo pdo_mysql \
+    # && pecl install -o -f redis-5.1.1 \
+    # && docker-php-ext-enable redis \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
+RUN echo 'max_execution_time = 120' >> /usr/local/etc/php/conf.d/docker-php-maxexectime.ini;
+
 RUN groupadd --gid 1000 appuser \
-  && useradd --uid 1000 -g appuser \
+    && useradd --uid 1000 -g appuser \
     -G www-data,root --shell /bin/bash \
     --create-home appuser
-
+# chsh -s /bin/zsh
 USER appuser
