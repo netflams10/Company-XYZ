@@ -17,7 +17,8 @@ class LGAFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => fake()->city(),
+            'state_id' => \App\Models\State::all()->random()->id,
         ];
     }
 }

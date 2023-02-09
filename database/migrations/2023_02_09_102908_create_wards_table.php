@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('wards', function (Blueprint $table) {
             $table->id();
-            $table->name('lga_id');
+            $table->string('name');
+            $table->unsignedBigInteger('lga_id');
             $table->timestamps();
         });
     }

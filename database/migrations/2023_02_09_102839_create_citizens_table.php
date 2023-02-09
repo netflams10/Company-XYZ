@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('full_name');
             $table->longText('address');
             $table->string('phone');
-            $table->string('ward_id');
+            $table->unsignedBigInteger('ward_id');
             // [1 => male, 2 => female]
             $table->enum('gender', ['1', '2']);
             $table->timestamps();

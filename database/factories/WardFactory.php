@@ -17,7 +17,8 @@ class WardFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => fake()->citySuffix(),
+            'lga_id' => \App\Models\LGA::all()->random()->id,
         ];
     }
 }

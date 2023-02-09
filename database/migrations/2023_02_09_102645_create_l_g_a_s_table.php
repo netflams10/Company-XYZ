@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('l_g_a_s', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('state_id');
+            $table->unsignedBigInteger('state_id');
             $table->timestamps();
         });
     }
