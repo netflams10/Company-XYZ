@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('create-citizen', [App\Http\Controllers\Admin\CitizenController::class, 'store']);
+Route::post('get-citizen-create-data', [App\Http\Controllers\Admin\CitizenController::class, 'create']);
+
 Route::get('/', function () {
     return view('welcome');
 });

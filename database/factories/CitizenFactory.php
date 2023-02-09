@@ -19,9 +19,10 @@ class CitizenFactory extends Factory
     {
         return [
             'full_name' => fake()->firstName() . ' ' . fake()->lastName(),
-            'gender'    => ,
+            'gender'    => rand(1, 2),
             'address'   => fake()->address(),
             'phone'     => fake()->phoneNumber(),
+            'ward_id'   => \App\Models\Ward::all()->random()->id,
         ];
     }
 }

@@ -6,7 +6,7 @@ abstract class Repository
 {
     public function citizen ()
     {
-        return new \App\Repository\Models\CitizenService;
+        return new \App\Repository\Models\CitizenRepository;
     }
 
     public function lga ()
