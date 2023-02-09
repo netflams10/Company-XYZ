@@ -9,6 +9,11 @@ class CitizenRepository
         $this->model = new \App\Models\Citizen;
     }
 
+    public function show ($id)
+    {
+        return $this->model->find($id);
+    }
+
     public function store ($request)
     {
         return $this->model->create([
@@ -18,6 +23,13 @@ class CitizenRepository
             'phone'   => $request->phone,
             'ward_id' => $request->ward_id,
         ]);
+    }
+
+    public function search ($search)
+    {
+        return $this->model->select('id', 'full_name', 'gender')->where('full_name', 'LIKE', '%' . $search . '%')
+          ->orWhere('gender', 'LIKE', '%' . $search . '%')
+          ->paginate(20);
     }
 
 }
